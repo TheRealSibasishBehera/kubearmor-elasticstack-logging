@@ -55,7 +55,7 @@ containers:
 image: quay.io/fluent/fluentd-kubernetes-daemonset
 env:
 - name:  FLUENT_ELASTICSEARCH_HOST
-value: "elasticsearch-logging"
+value: "elasticsearch.default.svc.cluster.local"
 - name:  FLUENT_ELASTICSEARCH_PORT
 value: "9200"
 ...
