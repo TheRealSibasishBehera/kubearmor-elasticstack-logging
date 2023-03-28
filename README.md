@@ -8,18 +8,18 @@
 
 There would be 3 components in this setup:
 
-1. **Elasticsearch** is a real-time, distributed, and scalable search engine which allows for full-text and structured search, as well as analytics. Relay server data can be indexed and searched through which would be produced in large volumes of log data.
+1. **Elasticsearch** is a real-time, distributed, and scalable search engine which allows for full-text and structured search, as well as analytics. Relay server logs can be indexed and searched through which would be produced in large volumes of log data.
 
-2. **Kibana** is a data visualization frontend and dashboard for Elasticsearch. Kibana allows user to explore the log data in a visual manner that is stored in the Elasticsearch instance with the help of a web interface. Users would also be allowed to build dashboards or view existing ones which would help to answer the quickly gain insight about the pods managed by KubeArmor:
+2. **Kibana** is a data visualization frontend and dashboard for Elasticsearch. Kibana allows user to explore the log data in a visual manner that is stored in the Elasticsearch instance with the help of a web interface. Users would also be allowed to build dashboards or view existing ones which would help to answer and quickly gain insight about the pods managed by KubeArmor:
 
 - Security policies deployed for their pods
-- Alerts for each policy in a pod
-- Alerts filtered by severity
-- Alerts filtered by type (MatchedPolicy, MatchedHostPolicy, MatchedNativePolicy)
-- Alerts filtered by operation (Process, File, Network, Capabilities)
-- Alerts filtered by action (Allow, Audit, Block)
+- Logs for each policy in a pod
+- Logs filtered by severity
+- Logs filtered by type (MatchedPolicy, MatchedHostPolicy, MatchedNativePolicy)
+- Logs filtered by operation (Process, File, Network, Capabilities)
+- Logs filtered by action (Allow, Audit, Block)
 
-Kibana and ElastiSearch can be part of a Stateful set that runs in the node where grp
+Kibana and ElastiSearch will be a part of StatefulSet that can run in any node
 
 3. **FluentD**
 
@@ -30,9 +30,9 @@ Why preferred over Logstash?
 
 How FluentD could be used:
 
-1. Directly accessing the logs through stdout in Relay Server. It can be done by using client-go library or running proxy for kube-apiserver for KubeArmor to access the Kubernetes API.
-
-2. Using the `kubearmor.kube-system.svc` based on the gRPC service here: https://github.com/kubearmor/kubearmor-client/tree/main/log
+1. Directly accessing the logs through stdout in Relay Server. It would be done with fluentd plugins made to consume logs from pods eg ```kubernetes_metadata```
+OR
+2. Using the `kubearmor.kube-system.svc` based on the gRPC service here: https://github.com/kubearmor/kubearmor-client/tree/main/log and then sending over to fluentd
 
 How to deploy FluentD:
 
@@ -77,7 +77,7 @@ Configuration would require:
 
 In this case fluentd-image uses plugins like ```kubernetes_metadata``` and ```elasticsearch``` to communicate with kubearmor relay and elastisearch instance 
 
-TODO: Currently fluentd tried to ingest all logs generated from kubernetes objects . For kube-armor logging the configuration should filter out only logs from relay pod 
+TODO: Currently fluentd-image is configured to ingest all logs generated from kubernetes objects . For kube-armor logging the configuration should filter out only logs from relay pod 
 
 Making a Operator (Using KubeBuilder SDK):
 
