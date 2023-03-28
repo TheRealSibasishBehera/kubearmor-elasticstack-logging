@@ -38,6 +38,10 @@ How to deploy FluentD:
 
 Daemonset - There is official support for that from FluentD at https://github.com/fluent/fluentd-kubernetes-daemonset
 
+or
+
+Deployment - As relay is not deployed on every node , we can use Deployment to connect to relays grpc service 
+
 Example:
 
 ```
@@ -71,7 +75,11 @@ Configuration would require:
 - `match` directives determine the output destinations.
 - `filter` directives determine the event processing pipelines.
 
-Making a Operator (Possibly using KubeBuilder SDK):
+In this case fluentd-image uses plugins like ```kubernetes_metadata``` and ```elasticsearch``` to communicate with kubearmor relay and elastisearch instance 
+
+TODO: Currently fluentd tried to ingest all logs generated from kubernetes objects . For kube-armor logging the configuration should filter out only logs from relay pod 
+
+Making a Operator (Using KubeBuilder SDK):
 
 As there are many components involved, a way to manage them could be through an Operator.
 
