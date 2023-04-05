@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: elasticsearch
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.5.0
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
         resources:
             limits:
               cpu: 1000m
@@ -73,4 +73,4 @@ spec:
       # storageClassName: ""
       resources:
         requests:
-          storage: 3Gi
+          storage: 5Gi

@@ -1,5 +1,5 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: elasticsearch
   labels:
@@ -13,3 +13,4 @@ spec:
       name: rest
     - port: 9300
       name: inter-node
+
