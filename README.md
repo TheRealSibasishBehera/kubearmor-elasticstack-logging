@@ -158,25 +158,12 @@ The access permissiona are managed by `ClusterRoleBinding`
     Open up your favorite browser and go to `localhost:5601`.
 
 
-5. Open the Kibana UI using a proxy or the NodePort service endpoint, and head to the Management Console inside it.
+5. [Kibana Setup Guide](./docs/kibana-setup.md)
 
-![Kibana Management Console](./assets/kibana-management.webp)
+***Example Visualisations***
 
-Step 2: Select the “Index Patterns” option under Kibana section.
-
-![Create Kubernetes Fluentd Index Pattern](./assets/kibana-index-pattern.webp)
-
-Step 3: Create a new Index Pattern using the pattern – “logstash-*”.
-
-![Kibana Create Kubernetes Fluentd Index](assets/kibana-index-logstash.png)
-
-Step 4: Select “@timestamp” in the timestamps option.
-
-![Kibana Select Timestamp](./assets/kibana-time.png)
-
-Expected Dashboard 
-
-![Expected Dashboard ](./assets/kibana-dash.png)
+![Visualisation2](./assets/final-dashboard2.png)
+![Visualisation1](./assets/final-dashboards1.png)
 
 ***Troubleshoot***
 
